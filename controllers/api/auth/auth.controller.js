@@ -89,22 +89,23 @@ class AuthController {
     async register(req, res) {
         try {
             const { fullName, email, password } = req.body;
+            console.log('STEP 1: register start');
 
-            // === 3. Mã hoá mật khẩu ===
             const hashedPassword = await bcrypt.hash(password, 10);
+            console.log('STEP 2: hashed');
 
-            // === 4. Tạo user mới (chưa kích hoạt) ===
             const newUser = await User.create({
                 _id: uuidv4(),
                 fullName,
                 email,
                 password: hashedPassword,
-                status: 0, // chưa kích hoạt
+                status: 0,
                 role: 1
             });
+            console.log('STEP 3: user created');
 
-            const token = crypto.randomBytes(16).toString('hex'); // 32 ký tự ngẫu nhiên
-            const expiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 phút
+            const token = crypto.randomBytes(16).toString('hex');
+            const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
 
             await UserToken.create({
                 userId: newUser._id,
@@ -113,8 +114,8 @@ class AuthController {
                 token,
                 expiresAt
             });
+            console.log('STEP 4: token created');
 
-            // === 6. Gửi email xác nhận ===
             const verifyLink = `${process.env.APP_URL}verify?token=${token}`;
             const transporter = nodemailer.createTransport({
                 host: process.env.SMTP_HOST || 'smtp.gmail.com',
@@ -142,8 +143,9 @@ Nếu bạn không thực hiện đăng ký, hãy bỏ qua email này.`,
             };
 
 
+            console.log('STEP 5: before send mail');
             await transporter.sendMail(mailOptions);
-
+            console.log('STEP 6: mail sent');
             return success(
                 res,
                 201,

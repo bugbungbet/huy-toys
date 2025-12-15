@@ -4,7 +4,6 @@ const nodemailer = require('nodemailer');
 const User = require('../../../models/user.model');
 
 class CustomersController {
-    // [PUT] /admin/customers/toggle/:id
     async toggleStatus(req, res) {
         try {
             const { id } = req.params;
@@ -14,16 +13,13 @@ class CustomersController {
                 return error(res, 404, 'Người dùng không tồn tại');
             }
          
-            // ❌ Không cho khóa admin
             if (user.role === 0) {
                 return error(res, 403, 'Không thể khóa tài khoản quản trị viên');
             }
 
-            // Toggle trạng thái
             user.status = user.status === 1 ? 0 : 1;
             await user.save();
 
-            // ===== GỬI EMAIL =====
             const transporter = nodemailer.createTransport({
                 host: process.env.SMTP_HOST || 'smtp.gmail.com',
                 port: process.env.SMTP_PORT || 465,

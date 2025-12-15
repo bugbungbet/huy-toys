@@ -12,7 +12,6 @@ class CustomersController {
 
             let matchCondition = {};
 
-            // ===== SEARCH =====
             if (q) {
                 matchCondition.$or = [
                     { fullName: { $regex: q, $options: 'i' } },
@@ -20,7 +19,6 @@ class CustomersController {
                 ];
             }
 
-            // ===== FILTER =====
             if (roleFilter !== undefined && roleFilter !== '') {
                 matchCondition.role = Number(roleFilter);
             }
@@ -29,11 +27,9 @@ class CustomersController {
                 matchCondition.status = Number(statusFilter);
             }
 
-            // ===== COUNT =====
             const totalItems = await User.countDocuments(matchCondition);
             const totalPages = Math.ceil(totalItems / limit);
 
-            // ===== QUERY WITH PAGINATION =====
             const users = await User.find(matchCondition)
                 .select('-password')
                 .sort({ createdAt: -1 })
@@ -43,7 +39,7 @@ class CustomersController {
 
             const startIndex = (page - 1) * limit;
             const endIndex = Math.min(startIndex + users.length, totalItems);
-            console.log(users);
+ 
             res.render('admin/customers', {
                 title: 'Quản lý người dùng',
                 users,
