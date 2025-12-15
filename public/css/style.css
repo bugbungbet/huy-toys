@@ -135,6 +135,14 @@ img {
   font-size: 1.25rem;
   letter-spacing: 0.05em;
   color: #e8ecf8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.user-layout .logo img,
+.auth-layout .logo img {
+  width: 40px;
+  aspect-ratio: 1/1;
 }
 .user-layout .nav-links,
 .auth-layout .nav-links {

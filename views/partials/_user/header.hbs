@@ -1,6 +1,9 @@
 <header class="site-header">
   <div class="container nav-bar">
-    <a class="logo" href="/">HuyToys</a>
+    <a class="logo" href="/">
+      <img src="/images/logo.png" alt="">
+      HuyToys
+    </a>
     <nav class="nav-links">
       <a href="/">Trang chủ</a>
       <a href="/products">Sản phẩm</a>
@@ -8,11 +11,9 @@
       <a href="/orders">Đơn hàng</a>
     </nav>
     <div class="nav-actions">
-      {{!-- <button class="icon-btn" id="searchToggle" aria-label="Tìm kiếm"><i class="bi bi-search"></i></button> --}}
       <a class="icon-btn" href="/cart" aria-label="Giỏ hàng"><i class="bi bi-cart3"></i></a>
       {{#if user}}
-      {{!-- <a class="icon-btn" href="/profile" aria-label="{{user.fullName}}"><i class="bi bi-person-circle"></i></a>
-      --}}
+
       <div class="icon-btn profile" aria-label="{{user.fullName}}">
         {{#if user.avatarUrl}}
         <img class="user-avatar" src="{{user.avatarUrl}}" alt="">

@@ -12,11 +12,6 @@
           <a class="btn primary" href="/products">Mua Ngay</a>
           <a class="btn ghost" href="#new-arrivals">Hàng Mới</a>
         </div>
-        <div class="hero-stats">
-          <div><span>300+</span><small>Bộ Mô Hình</small></div>
-          <div><span>24h</span><small>Giao Nhanh</small></div>
-          <div><span>4.9★</span><small>Đánh Giá Collector</small></div>
-        </div>
       </div>
       <div class="hero-visual">
         <div class="glass-card">
@@ -32,33 +27,6 @@
     </div>
   </section>
 
-  {{!-- <section class="section categories" id="categories">
-    <div class="container section-header">
-      <div>
-        <p class="eyebrow">Dòng Chọn Lọc</p>
-        <h2>Chọn Vũ Trụ Của Bạn</h2>
-      </div>
-      <a class="link-arrow" href="/products">Khám Phá Tất Cả <i class="bi bi-arrow-right"></i></a>
-    </div>
-    <div class="container category-grid">
-      <a class="category-card" href="products.html#Gundam">
-        <div class="category-thumb gundam"></div>
-        <h3>Bộ Mô Hình Gundam</h3>
-        <p>Từ High Grade đến Perfect Grade, các bộ sẵn sàng chiến đấu với viền neon nổi bật.</p>
-      </a>
-      <a class="category-card" href="products.html#Figure">
-        <div class="category-thumb figure"></div>
-        <h3>Mô Hình Nhân Vật</h3>
-        <p>Tư thế đặc trưng, điêu khắc cao cấp, đồ sưu tập sống động để trưng bày.</p>
-      </a>
-      <a class="category-card" href="products.html#Accessory">
-        <div class="category-thumb accessory"></div>
-        <h3>Phụ Kiện</h3>
-        <p>Chân đế, decal, đế LED và công cụ hoàn thiện tuyệt tác của bạn.</p>
-      </a>
-    </div>
-  </section> --}}
-
   <section class="section categories" id="categories">
     <div class="container section-header">
       <div>
@@ -71,7 +39,7 @@
     </div>
 
     <div class="container category-grid">
-      <!-- Gundam -->
+
       <a class="category-card">
         <img src="/images/gundam.jpg" class="category-thumb gundam">
         <h3>Gundam</h3>
@@ -81,7 +49,6 @@
         </p>
       </a>
 
-      <!-- One Piece -->
       <a class="category-card">
         <img src="/images/onepiece.jpg" class="category-thumb gundam">
         <h3>One Piece</h3>
@@ -91,7 +58,6 @@
         </p>
       </a>
 
-      <!-- Dragon Ball -->
       <a class="category-card">
         <img src="/images/dragon-ball.jpg" class="category-thumb gundam">
         <h3>Dragon Ball</h3>
@@ -118,16 +84,13 @@
       <article class="product-card">
         <div class="card-media">
           <img src="{{this.images.[0]}}" alt="RX-93 Nu Gundam Ver.Ka">
-          {{!-- <div class="card-overlay">
-            <button class="btn ghost">Xem Nhanh</button>
-          </div> --}}
+      
         </div>
         <div class="card-body">
           <p class="tag">{{this.brandName}}</p>
           <a href="/products/{{this._id}}">{{this.name}}</a>
           <div class="card-footer">
             <span class="price">{{formatCurrency this.price}}</span>
-            {{!-- <a class="btn small primary" href="product-detail.html">Thêm vào Giỏ</a> --}}
           </div>
         </div>
       </article>
