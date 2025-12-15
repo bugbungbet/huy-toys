@@ -15,6 +15,11 @@ class StockEntriesController {
         try {
             const { productId, variantCombinationId, batchCode, importPrice, quantity, note } = req.body;
 
+            const product = req.product;
+            if (product.hasVariants && !variantCombinationId) {
+                return error(res, 400, 'Vui lòng chọn tổ hợp biến thể.');
+            }
+
             const newStockEntry = new StockEntry({
                 productId,
                 batchCode,

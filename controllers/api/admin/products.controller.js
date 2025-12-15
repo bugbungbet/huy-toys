@@ -270,7 +270,14 @@ class ProductController {
                     );
                 }
             }
-
+            const hasStockEntries = await StockEntry.exists({ productId: id });
+            if (hasStockEntries) {
+                return error(
+                    res,
+                    400,
+                    'Không thể thay đổi trạng thái biến thể khi sản phẩm đã có lô hàng'
+                );
+            }
             product.hasVariants = !product.hasVariants;
             await product.save();
             success(res, 200, 'Cập nhật trạng thái biến thể sản phẩm thành công', {
