@@ -18,7 +18,6 @@
         {{#each orders}}
         <div class="order-item">
 
-            <!-- Header -->
             <div class="order-item-header">
                 <div class="order-code">
                     Mã đơn: <span>{{orderCode}}</span>
@@ -30,7 +29,6 @@
                 </div>
             </div>
 
-            <!-- Product List -->
             <div class="order-products">
                 <table class="order-products-table">
                     <thead>
@@ -70,7 +68,7 @@
                                 <button class="btn btn-secondary btn-review btn-review-disabled" disabled>Đã đánh giá</button>
                                 {{else}}
                                 <button class="btn btn-primary btn-review" data-order-id="{{../_id}}"
-                                    data-item-id="{{this._id}}" data-product-id="{{this.productId}}">
+                                    data-item-id="{{this._id}}" data-product-id="{{this.productId}}" data-variant-combination-id="{{this.variantCombinationId}}">
                                     Đánh giá
                                 </button>
                                 {{/if}}
@@ -82,7 +80,6 @@
                 </table>
             </div>
 
-            <!-- Footer -->
             <div class="order-item-footer">
                 <div class="order-summary">
                     Thành tiền: <br><strong>{{formatCurrency totalPrice}}</strong>
@@ -96,9 +93,7 @@
                     <a href="{{this.paymentUrl}}" class="btn btn-payment">Thanh toán</a>
                     {{/if}}
 
-                    {{!-- {{#if (eq status "delivered")}}
-                    <button class="btn btn-review" data-id="{{_id}}">Đánh giá sản phẩm</button>
-                    {{/if}} --}}
+
 
                     <a href="/orders/{{_id}}" class="btn btn-detail">Xem chi tiết đơn hàng</a>
                 </div>
@@ -118,24 +113,15 @@
     </div>
 </main>
 
-{{!-- Modal đánh giá sản phẩm --}}
 <div class="review-wrapper d-none" id="reviewModal">
-    <!-- Overlay đen -->
     <div class="review-overlay"></div>
-
-    <!-- Panel chính -->
     <div class="review-panel">
-
-        <!-- Header -->
         <div class="review-header">
             <h3>Chia sẻ cảm nhận của bạn</h3>
             <p>Hãy để lại vài dòng về trải nghiệm cùng sản phẩm của chúng tôi. Ý kiến của bạn sẽ giúp BranDeco hoàn
                 thiện hơn mỗi ngày.</p>
         </div>
-
-        <!-- Rating 5 sao -->
         <div class="review-rating">
-            {{!-- <label>Đánh giá sản phẩm:</label> --}}
             <div class="stars">
 
                 <div class="star-item" data-value="1">
@@ -186,13 +172,11 @@
             </div>
         </div>
 
-        <!-- Comment -->
         <div class="review-comment">
             <label for="reviewTextarea">Viết đôi dòng chia sẻ cảm nhận của bạn về sản phẩm này...</label>
             <textarea id="reviewTextarea" rows="4" placeholder="Chia sẻ cảm nhận..."></textarea>
         </div>
 
-        <!-- Upload ảnh -->
         <div class="review-images">
             <label>Hãy chia sẻ hình ảnh sản phẩm trong không gian của bạn!</label>
             <div class="review-images-wrap">
@@ -203,7 +187,6 @@
 
         </div>
 
-        <!-- Footer button -->
         <div class="review-footer">
             <button type="button" class="btn btn-cancel" id="reviewCancelBtn">Quay lại</button>
             <button type="button" class="btn btn-submit" id="reviewSubmitBtn">Gửi đánh giá <i

@@ -59,10 +59,20 @@ class OrdersController {
             }
 
             // Lấy dữ liệu từ body
-            const { rating, comment } = req.body;
+            const { rating, comment, variantCombinationId } = req.body;
+
             if (!rating || rating < 1 || rating > 5) {
                 return error(res, 400, 'Điểm đánh giá không hợp lệ');
             }
+
+            if (
+                variantCombinationId &&
+                orderItem.variantCombinationId &&
+                variantCombinationId !== orderItem.variantCombinationId
+            ) {
+                return error(res, 400, 'Biến thể sản phẩm không khớp');
+            }
+
             // Xử lý ảnh upload (đã có ở req.files từ route)
             let images = [];
             if (req.files && req.files.length > 0) {
@@ -75,8 +85,9 @@ class OrdersController {
             // Tạo review
             const review = new Review({
                 userId,
-                productId: orderItem.productId,
-                orderId,
+                orderItemId: orderItem._id,        // ✅ QUAN TRỌNG
+                productId: orderItem.productId,    // denormalize
+                variantCombinationId: orderItem.variantCombinationId || null,
                 rating,
                 comment,
                 images

@@ -23,12 +23,12 @@ const ReviewSchema = new mongoose.Schema({
         ref: 'Product'
     },
 
-    orderId: {
+    orderItemId: {
         type: String,
         required: true,
-        ref: 'Order'
+        ref: 'OrderItem'
     },
-
+    variantCombinationId: { type: String, default: null },
     // Điểm số từ 1 -> 5
     rating: {
         type: Number,
